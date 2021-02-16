@@ -74,7 +74,7 @@ def image_test():
             cv2.imwrite('imgs/dst/test_%s_%d.png' % (ksize, i), img_dst)
 
 def duplicate_test():
-    print('duplicate image')
+    print('test duplicate')
 
     for kernels in [df.kernels_3x3, df.kernels_5x5, df.kernels_7x7, df.kernels_9x9]:
         for i, kernel_a in enumerate(kernels):
