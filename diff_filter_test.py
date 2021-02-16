@@ -65,13 +65,16 @@ def error_test():
 def image_test():
     print('test image')
 
-    img_src = cv2.imread('imgs/src/test.png', cv2.IMREAD_GRAYSCALE).astype(np.float32)
+    imgnames = ['test_white', 'test_grey', 'test_black']
 
-    for ksize, kernels in zip(['3x3', '5x5', '7x7', '9x9'], [df.kernels_3x3, df.kernels_5x5, df.kernels_7x7, df.kernels_9x9]):
-        for i, kernel in enumerate(kernels):
-            img_dst = cv2.filter2D(img_src, ddepth = -1, kernel=kernel, borderType = cv2.BORDER_REPLICATE)
+    for imgname in imgnames:
+        img_src = cv2.imread('imgs/src/%s.png' % imgname, cv2.IMREAD_GRAYSCALE).astype(np.float32)
 
-            cv2.imwrite('imgs/dst/test_%s_%d.png' % (ksize, i), img_dst)
+        for ksize, kernels in zip(['3x3', '5x5', '7x7', '9x9'], [df.kernels_3x3, df.kernels_5x5, df.kernels_7x7, df.kernels_9x9]):
+            for i, kernel in enumerate(kernels):
+                img_dst = cv2.filter2D(img_src, ddepth = -1, kernel=kernel, borderType = cv2.BORDER_REPLICATE)
+
+                cv2.imwrite('imgs/dst/%s_%s_%d.png' % (imgname, ksize, i), img_dst)
 
 def duplicate_test():
     print('test duplicate')
